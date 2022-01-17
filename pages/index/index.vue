@@ -1,17 +1,14 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
     <view>
-      <compare-box>test</compare-box>
+      <compare-box></compare-box>
     </view>
 	</view>
 </template>
 
 <script>
   import store from '@/store/index.js'
+  //import compareBox from '@/components/compare-box/compare-box.vue'
 	export default {
 		data() {
 			return {
