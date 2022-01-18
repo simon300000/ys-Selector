@@ -3,24 +3,26 @@
     <uni-row class="demo-uni-row" width="100%">
       <uni-col :span="11" id="left">
         <uni-row class="demo-uni-row">
-          <uni-col :span="2">
-            <button>top</button>
+          <uni-col :span="3">
+            <uni-row><button>置顶</button></uni-row>
+            <uni-row><button>置底</button></uni-row>
           </uni-col>
-          <uni-col :span="22">
+          <uni-col :span="21">
             <uni-card :title="characters[0]" :cover="leftImageUrl"></uni-card>
           </uni-col>
         </uni-row>
       </uni-col>
       <uni-col :span="2" id="middle">
-        <button>tie</button>
+        <button>平</button>
       </uni-col>
       <uni-col :span="11" id="right">
         <uni-row class="demo-uni-row">
-          <uni-col :span="22">
+          <uni-col :span="21">
             <uni-card :title="characters[1]" :cover="rightImageUrl"></uni-card>
           </uni-col>
-          <uni-col :span="2">
-            <button>top</button>
+          <uni-col :span="3">
+            <uni-row><button>置顶</button></uni-row>
+            <uni-row><button>置底</button></uni-row>
           </uni-col>
         </uni-row>
       </uni-col>
@@ -29,6 +31,9 @@
 </template>
 
 <script>
+  function compare(event) {
+    
+  }
   //import store from '@/store/index.js'
   export default {
     data() {
