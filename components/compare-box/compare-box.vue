@@ -7,17 +7,17 @@
             <uni-row class="set-bottom"><button>置底</button></uni-row>
           </uni-col>
           <uni-col :span="21">
-            <uni-card @click="choose('left-box')" id="left-box" :title="challanger" :cover="leftImageUrl"></uni-card>
+            <uni-card @click="choose('left')" :title="challanger" :cover="leftImageUrl"></uni-card>
           </uni-col>
         </uni-row>
       </uni-col>
       <uni-col :span="2" id="middle">
-        <button>平</button>
+        <button @click="choose('tie')">平</button>
       </uni-col>
       <uni-col :span="11" id="right">
         <uni-row class="demo-uni-row">
           <uni-col :span="21">
-            <uni-card :title="challangee" :cover="rightImageUrl"></uni-card>
+            <uni-card @click="choose('right')" :title="challangee" :cover="rightImageUrl"></uni-card>
           </uni-col>
           <uni-col :span="3">
             <uni-row class="set-bottom"><button>置底</button></uni-row>
@@ -38,7 +38,22 @@
     },
     methods: {
       choose: function (id) {
-        console.log(document.getElementById(id))
+        if ( id === 'left' ) {
+          console.log(this.challanger)
+        } else if ( id === 'right' ) {
+          console.log(this.challangee)
+        } else if ( id === 'tie' ) {
+          for ( var i=0; i<this.$store.state.seq.length; i++ ) {
+            if ( this.$store.state.seq[i][0] === this.challangee ) {
+              //console.log(i)
+              this.$store.commit("addToSeqTie", {"character": this.challanger, "index": i})
+              break
+            }
+          }
+          
+          //console.log(this.$store.state.seq)
+        }
+
       },
     },
     computed: {
@@ -61,7 +76,8 @@
     created() {
       this.$store.commit("initChallanger")
       this.$store.commit("initChallangee")
-      this.$store.commit("addToSeq", this.$store.state.characters[1], 0)
+      this.$store.commit("addToSeq", {"character": this.$store.state.characters[1], "index": 0})
+      //console.log(this.$store.state.seq)
     }
   }
 </script>

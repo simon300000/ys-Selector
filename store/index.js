@@ -27,6 +27,13 @@ const store = createStore({
     getChallangee: state => {
       //var rand = Math.floor(Math.random()*state.characters.length)
       return state.characters[1]
+    },
+    getIndex: (state, character) => {
+      for ( var i=0; i<state.seq.length; i++ ) {
+        if ( state.seq[i][0] === character ) {
+          return i
+        }
+      }
     }
   },
   mutations: {
@@ -38,13 +45,17 @@ const store = createStore({
       }
     },
     addToBottom (state, character) {
-      state.characters.push(character)
+      state.bottom.push(character)
     },
-    addToSeq (state, character, n) {
-      state.characters.splice(n, 0, [character])
+    addToSeq (state, payload) {
+      state.seq.splice(payload['index'], 0, [payload['character']])
     },
-    addToSeqTie (state, character, n) {
-      state.characters[n].push(character)
+    addToSeqTie (state, payload) {
+      state.seq[payload['index']].push(payload['character'])
+      //console.log(state.seq)
+    },
+    setChallanger (state, n) {
+      state.challanger = state.characters[n]
     },
     setChallangee (state, n) {
       state.challangee = state.seq[n][0]
