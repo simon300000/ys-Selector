@@ -38,10 +38,20 @@
     },
     methods: {
       choose: function (id) {
+        if (this.$store.state.characters.length === 0) {
+          return
+        }
         if ( id === 'left' ) {
-          console.log(this.challanger)
+          //console.log(this.challanger)
+          var challangeeIndex = this.getIndex(this.challangee)
+          this.$store.commit("setChallangeeMax", challangeeIndex)
+          challangeeIndex = Math.round((challangeeIndex + this.$store.state.challangeeMin)/2)
+          this.$store.commit("setChallangee", challangeeIndex)
         } else if ( id === 'right' ) {
-          console.log(this.challangee)
+          //console.log(this.challangee)
+          var challangeeIndex = this.getIndex(this.challangee)
+          this.$store.commit("setChallangeeMin", challangeeIndex)
+          challangeeIndex = Math.round((challangeeIndex + this.$store.state.challangeeMax)/2)
         } else if ( id === 'tie' ) {
           for ( var i=0; i<this.$store.state.seq.length; i++ ) {
             if ( this.$store.state.seq[i][0] === this.challangee ) {
@@ -51,10 +61,39 @@
             }
           }
           
-          //console.log(this.$store.state.seq)
+          
+          this.$store.commit("removeCharacter", this.challanger)
+          this.$store.commit("setChallangeeMin", -1)
+          this.$store.commit("setChallangeeMax", this.$store.state.seq.length)
+          var challangeeIndex = Math.round((this.$store.state.challangeeMin + this.$store.state.challangeeMax)/2)
+          this.$store.commit("setChallangee", challangeeIndex)
+          this.$store.commit("setChallanger", this.$store.getters.getChallangerIndex)
+          return
+          
         }
-
+        if ( challangeeIndex === this.$store.state.challangeeMin || challangeeIndex === this.$store.state.challangeeMax ) {
+          this.$store.commit("addToSeq", {"index": this.$store.state.challangeeMax, "character": this.challanger})
+          this.$store.commit("removeCharacter", this.challanger)
+          this.$store.commit("setChallangeeMin", -1)
+          this.$store.commit("setChallangeeMax", this.$store.state.seq.length)
+          var challangeeIndex = Math.round((this.$store.state.challangeeMin + this.$store.state.challangeeMax)/2)
+          this.$store.commit("setChallangee", challangeeIndex)
+          this.$store.commit("setChallanger", this.$store.getters.getChallangerIndex)
+        } else {
+          this.$store.commit("setChallangee", challangeeIndex)
+        }
+        console.log(challangeeIndex)
+        console.log("state:")
+        console.log(this.$store.state)
+        return
       },
+      getIndex: function (character) {
+        for ( var i=0; i<this.$store.state.seq.length; i++ ) {
+          if ( this.$store.state.seq[i][0] === character ) {
+            return i
+          }
+        }
+      }
     },
     computed: {
       characters() {
@@ -77,7 +116,11 @@
       this.$store.commit("initChallanger")
       this.$store.commit("initChallangee")
       this.$store.commit("addToSeq", {"character": this.$store.state.characters[1], "index": 0})
-      //console.log(this.$store.state.seq)
+      this.$store.commit("removeCharacter", this.$store.state.challangee)
+      this.$store.commit("setChallangeeMax", this.$store.state.seq.length)
+      //console.log(this.$store.state.seq.length)
+      console.log("state:")
+      console.log(this.$store.state)
     }
   }
 </script>

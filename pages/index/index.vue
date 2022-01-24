@@ -1,7 +1,8 @@
 <template>
 	<view class="content">
     <view>
-      <compare-box></compare-box>
+      <compare-box v-if="cbv"></compare-box>
+      <compare-result v-if="crv"></compare-result>
     </view>
 	</view>
 </template>
@@ -12,9 +13,25 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				characters: store.state.characters
 			}
 		},
+    computed: {
+      cbv() {
+        return store.state.compareBoxVisible
+      },
+      crv() {
+        return store.state.compareResultVisible
+      }
+    },
+    watch: {
+      characters: function () {
+        if (store.state.characters.length === 0) {
+          //store.commit("setCompareBoxVisible", false)
+          //store.commit("setCompareResultVisible", true)
+        }
+      }
+    },
 		onLoad() {
 
 		},
@@ -32,22 +49,4 @@
 		justify-content: center;
 	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
 </style>

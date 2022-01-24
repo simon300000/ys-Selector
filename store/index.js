@@ -16,13 +16,22 @@ const store = createStore({
 		characters: read_xlsx('static/characters.xlsx'),
     challanger: '',
     challangee: '',
+    num: 0,
     bottom: [],
-    seq: []
+    seq: [],
+    challangeeMin: -1,
+    challangeeMax: 0,
+    compareBoxVisible: true,
+    compareResultVisible: true
 	},
   getters: {
     getChallanger: state => {
       var rand = Math.floor(Math.random()*state.characters.length)
       return state.characters[rand]
+    },
+    getChallangerIndex: state => {
+      var rand = Math.floor(Math.random()*state.characters.length)
+      return rand
     },
     getChallangee: state => {
       //var rand = Math.floor(Math.random()*state.characters.length)
@@ -65,6 +74,22 @@ const store = createStore({
     },
     initChallangee (state) {
       state.challangee = state.characters[1]
+      //state.characters.splice(1,1)
+    },
+    setNum (state, n) {
+      state.num = n
+    },
+    setChallangeeMax (state, n) {
+      state.challangeeMax = n
+    },
+    setChallangeeMin (state, n) {
+      state.challangeeMin = n
+    },
+    setCompareBoxVisible (state, visible) {
+      state.compareBoxVisible = visible
+    },
+    setCompareResultVisible (state, visible) {
+      state.compareResultVisible = visible
     }
   }
 })
