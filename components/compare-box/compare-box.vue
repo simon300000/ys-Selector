@@ -39,6 +39,7 @@
     methods: {
       choose: function (id) {
         if (this.$store.state.characters.length === 0) {
+          alert("排序完成")
           return
         }
         if ( id === 'left' ) {
