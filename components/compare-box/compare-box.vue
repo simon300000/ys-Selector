@@ -107,10 +107,10 @@
         return this.$store.state.challangee
       },
       leftImageUrl() {
-        return "/static/大图/" + this.$store.state.challanger + ".png"
+        return "/static/大图/" + this.$store.state.challanger + ".jpg"
       },
       rightImageUrl() {
-        return "/static/大图/" + this.$store.state.challangee + ".png"
+        return "/static/大图/" + this.$store.state.challangee + ".jpg"
       }
     },
     created() {
