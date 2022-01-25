@@ -4,10 +4,10 @@
     <uni-row class="row">
       <view v-for="characters, i in seq" :key="i">
         <!--<view class="row">-->
-          <uni-col class="seq" :span="3" v-if="true">{{ i }}</uni-col>
+          <uni-col class="seq" :span="1" v-if="true">{{ i }}</uni-col>
             <!---->
           <view v-for="c in characters" :key="c.id">
-            <uni-col :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+            <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
           </view>
         <!--</view>-->
       </view>
@@ -16,7 +16,7 @@
       <uni-row>
         <uni-col :span="3">bottom</uni-col>
         <view v-for="c in bottoms" :key="c.id">
-          <uni-col :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+          <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
         </view>
       </uni-row>
     </view>
@@ -49,9 +49,14 @@
 },
 .small-image-box{
   flex: block;
+  lg: 2;
+  md: 3;
+  sm: 3;
+  xs: 4;
 },
 .image-small {
   width: 120px;
+  height: 120px;
 },
 h1 {
   text-align: center;
