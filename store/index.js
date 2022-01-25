@@ -90,6 +90,10 @@ const store = createStore({
     },
     setCompareResultVisible (state, visible) {
       state.compareResultVisible = visible
+    },
+    setState(state, payload) {
+      console.log(payload)
+      state.replaceState(payload)
     }
   }
 })

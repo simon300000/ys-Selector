@@ -7,16 +7,16 @@
           <uni-col class="seq" :span="3" v-if="true">{{ i }}</uni-col>
             <!---->
           <view v-for="c in characters" :key="c.id">
-            <uni-col :span="4"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+            <uni-col :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
           </view>
         <!--</view>-->
       </view>
     </uni-row>
     <view>
       <uni-row>
-        <uni-col :span="4">bottom</uni-col>
+        <uni-col :span="3">bottom</uni-col>
         <view v-for="c in bottoms" :key="c.id">
-          <uni-col :span="4"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+          <uni-col :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
         </view>
       </uni-row>
     </view>

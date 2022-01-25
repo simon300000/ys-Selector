@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view :key="mainKey">
     <uni-row class="demo-uni-row" width="100%">
       <uni-col :span="11" id="left">
         <uni-row class="demo-uni-row">
@@ -13,6 +13,7 @@
       </uni-col>
       <uni-col :span="2" id="middle">
         <button @click="choose('tie')">平</button>
+        <button @click="revert()">上一页</button>
       </uni-col>
       <uni-col :span="11" id="right">
         <uni-row class="demo-uni-row">
@@ -30,6 +31,8 @@
   export default {
     data() {
       return {
+        states: [],
+        mainKey: 0
         //characters: this.$store.state.characters
       }
     },
@@ -39,6 +42,9 @@
           alert("排序完成")
           return
         }
+        var state = JSON.parse(JSON.stringify(this.$store.state))
+        this.states.push(state)
+        //console.log(this.states)
         if ( id === 'left' ) {
           //console.log(this.challanger)
           var challangeeIndex = this.getIndex(this.challangee)
@@ -66,6 +72,7 @@
           var challangeeIndex = Math.round((this.$store.state.challangeeMin + this.$store.state.challangeeMax)/2)
           this.$store.commit("setChallangee", challangeeIndex)
           this.$store.commit("setChallanger", this.$store.getters.getChallangerIndex)
+          //this.states.push(this.$store.state)
           return
           
         }
@@ -83,6 +90,7 @@
         //console.log(challangeeIndex)
         //console.log("state:")
         //console.log(this.$store.state)
+        //this.states.push(this.$store.state)
         return
       },
       getIndex: function (character) {
@@ -93,11 +101,25 @@
         }
       },
       setBottom() {
+        var state = JSON.parse(JSON.stringify(this.$store.state))
+        this.states.push(state)
         this.$store.commit("addToBottom", this.challanger)
         this.$store.commit("removeCharacter", this.challanger)
         this.$store.commit("setChallangeeMin", -1)
         this.$store.commit("setChallangeeMax", this.$store.state.seq.length)
         this.$store.commit("setChallanger", this.$store.getters.getChallangerIndex)
+      },
+      revert() {
+        if (this.states.length >= 1) {
+          var state = this.states.pop()
+          this.$store.replaceState(state)
+          this.manKey += 1
+          //console.log(state)
+          //console.log(this.$store.state)
+          //this.$router.go(-1)
+        } else {
+          alert("已到最底!")
+        }
       }
     },
     computed: {
