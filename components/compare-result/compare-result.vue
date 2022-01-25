@@ -1,13 +1,23 @@
 <template>
-  <view width="1024px">排行
-    <view v-for="characters, i in seq" :key="i">
-      <uni-row >
-        <uni-col :span="2">{{ i }}</uni-col>
-        <uni-col :span="8" v-for="c in characters" :key="c.id">
-          <uni-card :title="c" :cover="'/static/小图/'+c+'.png'">
-            
-          </uni-card>
-        </uni-col>
+  <view>
+    <h1>排行</h1>
+    <uni-row class="row">
+      <view v-for="characters, i in seq" :key="i">
+        <!--<view class="row">-->
+          <uni-col class="seq" :span="3" v-if="true">{{ i }}</uni-col>
+            <!---->
+          <view v-for="c in characters" :key="c.id">
+            <uni-col :span="4"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+          </view>
+        <!--</view>-->
+      </view>
+    </uni-row>
+    <view>
+      <uni-row>
+        <uni-col :span="4">bottom</uni-col>
+        <view v-for="c in bottoms" :key="c.id">
+          <uni-col :span="4"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+        </view>
       </uni-row>
     </view>
   </view>
@@ -24,11 +34,31 @@
     computed: {
       seq() {
         return this.$store.state.seq
+      },
+      bottoms() {
+        return this.$store.state.bottom
       }
     }
   }
 </script>
 
 <style>
-
+.row {
+  display: block;
+  flex-wrap: wrap;
+},
+.small-image-box{
+  flex: block;
+},
+.image-small {
+  width: 120px;
+},
+h1 {
+  text-align: center;
+  background-color: #D9D9D9;
+},
+.seq {
+  font-size: 24px;
+  color: #0066CC;
+}
 </style>

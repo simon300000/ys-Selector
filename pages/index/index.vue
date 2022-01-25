@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
     <view>
+      <h1>原神角色喜好排序工具</h1>
       <compare-box v-if="cbv"></compare-box>
       <compare-result v-if="crv"></compare-result>
     </view>
@@ -47,6 +48,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-	}
+	},
+  h1 {
+    text-align: center;
+    background-color: #D9D9D9;
+  }
 
 </style>
