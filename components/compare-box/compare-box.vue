@@ -7,7 +7,8 @@
             <uni-row class="set-bottom"><button @click="setBottom">置底</button></uni-row>
           </uni-col>
           <uni-col :span="21">
-            <uni-card @click="choose('left')" :title="challanger" :cover="leftImageUrl"></uni-card>
+            <!--<uni-card @click="choose('left')" :title="challanger" :cover="leftImageUrl"></uni-card>-->
+            <view class="cname-large" @click="choose('left')" :color="red">{{ challanger }}</view>
           </uni-col>
         </uni-row>
       </uni-col>
@@ -163,10 +164,12 @@
     justify-content: center;
     align-items: center;
   }
-
   .set-bottom {
     justify-content: flex-end;
     align-items: flex-end;
     display: flex;
+  }
+  .cname-large {
+    font-size: 128px;
   }
 </style>
