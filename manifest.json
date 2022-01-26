@@ -68,5 +68,16 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "title" : "角色喜好排行工具",
+        "router" : {
+            "base" : "/ys-rank-tool/"
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        }
+    }
 }
