@@ -1,22 +1,29 @@
 <template>
   <view>
     <h1>排行</h1>
-    <uni-row class="row">
-      <view v-for="characters, i in seq" :key="i">
+    <h2 class="top">{{ 'top3' }}</h2>
+    <view v-for="characters, i in top3">
+      <view v-for="c in characters" :key="c.id">
+          <image mode="aspectFit" class="image-large" :src="'/static/大图/'+c+'.jpg'"></image>
+      </view>
+    </view>
+    <h2 class="others">{{ top3.length+1 }}+</h2>
+    <uni-row>
+      <view v-for="characters, i in others" :key="i">
         <!--<view class="row">-->
-          <uni-col class="seq" :span="1" v-if="true">{{ i }}</uni-col>
+          <!--<uni-col class="seq" :span="1" v-if="true">{{ i }}</uni-col>-->
             <!---->
           <view v-for="c in characters" :key="c.id">
-            <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.jpg'"></image></uni-col>
+            <uni-col class="small-image-box" :span="4"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.jpg'"></image></uni-col>
           </view>
         <!--</view>-->
       </view>
     </uni-row>
     <view>
       <uni-row>
-        <uni-col :span="3">bottom</uni-col>
+        <text>bottom</text>
         <view v-for="c in bottoms" :key="c.id">
-          <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.jpg'"></image></uni-col>
+          <uni-col class="small-image-box" :span="4"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.jpg'"></image></uni-col>
         </view>
       </uni-row>
     </view>
@@ -37,6 +44,22 @@
       },
       bottoms() {
         return this.$store.state.bottom
+      },
+      top3() {
+        var l = Math.min(3, this.$store.state.seq.length)
+        var top3 = []
+        for (var i=0; i< l; i++) {
+          top3.push(this.$store.state.seq[i])
+        }
+        return top3
+      },
+      others() {
+        var l = Math.min(3, this.$store.state.seq.length)
+        var others = []
+        for (var i = l; i<this.$store.state.seq.length; i++) {
+          others.push(this.$store.state.seq[i])
+        }
+        return others
       }
     }
   }
@@ -62,8 +85,20 @@ h1 {
   text-align: center;
   background-color: #D9D9D9;
 },
+.top {
+  text-align: center;
+  background-color: #DD524D;
+},
+.others {
+  text-align: center;
+  background-color: #00CE47;
+}
 .seq {
   font-size: 24px;
   color: #0066CC;
-}
+},
+  .image-large {
+    width: 320px;
+    height: 480px;
+  }
 </style>
