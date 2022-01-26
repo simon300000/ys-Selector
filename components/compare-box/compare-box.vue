@@ -1,7 +1,7 @@
 <template>
   <view :key="mainKey">
     <uni-row class="demo-uni-row" width="100%">
-      <uni-col :span="11" id="left">
+      <uni-col :xs="24" :sm="24" :md="11" class="choose"  id="left">
         <uni-row class="demo-uni-row">
           <uni-col :span="3">
             <uni-row class="set-bottom"><button @click="setBottom">置底</button></uni-row>
@@ -17,11 +17,11 @@
           </uni-col>
         </uni-row>
       </uni-col>
-      <uni-col :span="2" id="middle">
+      <uni-col :xs="24" :sm="24" :md="2" id="middle">
         <button @click="choose('tie')">平</button>
         <button @click="revert()">上一页</button>
       </uni-col>
-      <uni-col :span="11" id="right">
+      <uni-col :xs="24" :sm="24" :md="11" id="right">
         <uni-row class="demo-uni-row">
           <uni-col :span="21">
             <uni-table emptyText='' :loading="rightLoaded">
@@ -203,5 +203,10 @@
   .name {
     font-size: 24px;
     color: #000000;
+  }
+  .choose {
+    md: 11;
+    sm: 24;
+    xs: 24;
   }
 </style>
