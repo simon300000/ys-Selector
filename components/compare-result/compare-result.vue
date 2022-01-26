@@ -1,12 +1,12 @@
 <template>
   <view>
     <h1>排行</h1>
-    <h2 class="top">{{ 'top3' }}</h2>
-    <view v-for="characters, i in top3">
-      <view v-for="c in characters" :key="c.id">
+    <uni-row v-for="characters, i in top3">
+      <h2 :class="'top'+(i+1)">{{ i+1 }}</h2>
+      <uni-col v-for="c in characters" :key="c.id" :span="8">
           <image mode="aspectFit" class="image-large" :src="'/static/大图/'+c+'.jpg'"></image>
-      </view>
-    </view>
+      </uni-col>
+    </uni-row>
     <h2 class="others">{{ top3.length+1 }}+</h2>
     <uni-row>
       <view v-for="characters, i in others" :key="i">
@@ -91,7 +91,7 @@ h1 {
 },
 .others {
   text-align: center;
-  background-color: #00CE47;
+  background-color: #007AFF;
 }
 .seq {
   font-size: 24px;
@@ -100,5 +100,17 @@ h1 {
   .image-large {
     width: 320px;
     height: 480px;
+  }
+  .top1 {
+    text-align: center;
+    background-color: #CE3C39
+  },
+  .top2 {
+    text-align: center;
+    background-color: #E96900
+  },
+  .top3 {
+    text-align: center;
+    background-color: #00CE47;
   }
 </style>
