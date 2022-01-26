@@ -99,7 +99,7 @@ h1 {
 },
   .image-large {
     width: 320px;
-    height: 480px;
+    height: 320px;
   }
   .top1 {
     text-align: center;
