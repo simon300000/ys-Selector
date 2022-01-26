@@ -7,7 +7,7 @@
           <uni-col class="seq" :span="1" v-if="true">{{ i }}</uni-col>
             <!---->
           <view v-for="c in characters" :key="c.id">
-            <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+            <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.jpg'"></image></uni-col>
           </view>
         <!--</view>-->
       </view>
@@ -16,7 +16,7 @@
       <uni-row>
         <uni-col :span="3">bottom</uni-col>
         <view v-for="c in bottoms" :key="c.id">
-          <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.png'"></image></uni-col>
+          <uni-col class="small-image-box" :span="3"><image mode="aspectFit" class="image-small" :src="'/static/小图/'+c+'.jpg'"></image></uni-col>
         </view>
       </uni-row>
     </view>
