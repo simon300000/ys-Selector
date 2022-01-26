@@ -193,7 +193,7 @@
   },
   .image-large {
     width: 320px;
-    height: 480px;
+    height: 320px;
   },
   .set-bottom {
     justify-content: flex-end;
