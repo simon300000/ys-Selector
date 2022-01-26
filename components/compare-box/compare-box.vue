@@ -7,7 +7,13 @@
             <uni-row class="set-bottom"><button @click="setBottom">置底</button></uni-row>
           </uni-col>
           <uni-col :span="21">
-            <uni-card @click="choose('left')" :title="challanger" :cover="leftImageUrl"></uni-card>
+            <uni-table emptyText='' :loading="leftLoaded">
+              <uni-th class="name">{{ challanger }}</uni-th>
+              <uni-tr>
+                <image @load="onLoadLeft()" @click="choose('left')" mode="aspectFit" class="image-large" :src="leftImageUrl"></image>
+              </uni-tr>
+            </uni-table>
+            <!--<uni-card @click="choose('left')" :title="challanger" :cover="leftImageUrl"></uni-card>-->
           </uni-col>
         </uni-row>
       </uni-col>
@@ -18,7 +24,13 @@
       <uni-col :span="11" id="right">
         <uni-row class="demo-uni-row">
           <uni-col :span="21">
-            <uni-card @click="choose('right')" :title="challangee" :cover="rightImageUrl"></uni-card>
+            <uni-table emptyText='' :loading="rightLoaded">
+              <uni-th class="name">{{ challangee }}</uni-th>
+              <uni-tr>
+                <image @load="onLoadRight()" @click="choose('right')" mode="aspectFit" class="image-large" :src="rightImageUrl"></image>
+              </uni-tr>
+            </uni-table>
+            <!--<uni-card @click="choose('right')" :title="challangee" :cover="rightImageUrl"></uni-card>-->
           </uni-col>
         </uni-row>
       </uni-col>
@@ -32,11 +44,27 @@
     data() {
       return {
         states: [],
-        mainKey: 0
+        mainKey: 0,
+        leftLoaded: true,
+        rightLoaded: true
         //characters: this.$store.state.characters
       }
     },
+    watch: {
+      challanger: function() {
+        this.leftLoaded = true
+      },
+      challangee: function() {
+        this.rightLoaded = true
+      }
+    },
     methods: {
+      onLoadLeft: function () {
+        this.leftLoaded = false
+      },
+      onLoadRight: function () {
+        this.rightLoaded = false
+      },
       choose: function (id) {
         if (this.$store.state.characters.length === 0) {
           alert("排序完成")
@@ -162,11 +190,18 @@
     /* #endif */
     justify-content: center;
     align-items: center;
-  }
-
+  },
+  .image-large {
+    width: 320px;
+    height: 480px;
+  },
   .set-bottom {
     justify-content: flex-end;
     align-items: flex-end;
     display: flex;
+  }
+  .name {
+    font-size: 24px;
+    color: #000000;
   }
 </style>
